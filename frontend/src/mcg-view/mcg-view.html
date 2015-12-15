@@ -1,0 +1,56 @@
+<div class="mcgdiv mcgtree" *ng-if="config.type==='tree'">
+  <div class="mcgtreebar">{{config.name}}</div>
+    <span class="iconButton" (click)="config.toggle()">{{config.getIcon()}}</span><input type="checkbox" [checked]="config.checked" (click)="config.check()" /> {{ config.name }}
+    <div *ng-if="config.expanded">
+    <ul>
+        <li *ng-for="#file of config.files">{{file}}</li>
+    </ul>
+    <ul>
+        <li *ng-for="#dir of config.configs">
+            <mcg-view [config]="dir"></mcg-view>
+        </li>
+    </ul>
+    </div>
+</div>
+
+<div class="mcgdiv mcgapp" *ng-if="config.type==='app'">
+<div class="mcgappbar">{{config.name}}</div>
+        <div *ng-for="#dir of config.configs">
+            <mcg-view [config]="dir"></mcg-view>
+        </div>
+</div>
+
+<div class="mcgdiv mcgheader" *ng-if="config.type==='header'">
+  <div class="mcgheaderbar">{{config.name}}</div>
+</div>
+
+<div class="mcgdiv mcglist" *ng-if="config.type==='list'">
+  <div class="mcglistbar">{{config.name}}
+  </div>
+    <div class="mcgdiv" *ng-if="config.data">
+    <table class=".mcgtable">
+        <tr class=".mcgtableth">
+          <td class=".mcgtabletd" *ng-for="#mfield of config.mfields">{{mfield}}</td>
+        </tr>
+        <tr class=".mcgtabletr" *ng-for="#row of config.data" (click)="onDetailsClick(config,row)">
+          <td class=".mcgtabletd" *ng-for="#mfield of config.mfields">{{row[mfield]}}</td>
+          <td *ng-for="#action of config.actions"><button (click)="onActionClick(action,row)">{{action.Action}}</button></td>
+        </tr>
+    </table>
+    </div>
+  <div class="mcgdiv" *ng-if="config.dfields && config.showdetails">
+    <table class=".mcgtable">
+      <tr class=".mcgtableth">
+        <td class=".mcgtabletd">Field</td><td class=".mcgtabletd">Value</td>
+      </tr>
+      <tr class=".mcgtabletr" *ng-for="#field of config.dfields">
+        <td class=".mcgtabletd" >{{field.name}}</td> <td class=".mcgtabletd" >{{field.value}}</td>
+      </tr>
+    </table>
+    <button (click)="onDetailsClose(config)">Close</button>
+  </div>
+</div>
+
+<div class="mcgdiv mcgfooter" *ng-if="config.type==='footer'">
+  <div class="mcgfooterbar">{{config.name}}</div>
+</div>
