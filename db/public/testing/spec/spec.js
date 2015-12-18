@@ -1,5 +1,133 @@
-var A1_Mind = {"name":"A1-Mind"};
+ var A1_Mind = {"name":"A1-Mind"};
 var temp={};
+var sampleconfig = {
+  "_id": "5667c384d0e9376908d9bf66",
+  "name": "Mc Genie Sample Config",
+  "id": "0",
+  "type": "app",
+  "configs": [
+    {
+      "name": "Header...",
+      "id": "header",
+      "type": "header",
+      "configs": [],
+      "files": [],
+      "data": null,
+      "source": null,
+      "expanded": false,
+      "checked": false
+    },
+    {
+      "name": "List of All Device Groups",
+      "id": "list1",
+      "type": "list",
+      "configs": [],
+      "files": [],
+      "data": [
+        {
+          "Name": "if you see this",
+          "Path": "you probably are not logged in or lost your token"
+        }
+      ],
+      "source": "devicegroups",
+      "mfields": [
+        "Name",
+        "Path",
+        "Icon",
+        "Kind"
+      ],
+      "dfields": [
+        {
+          "name": "Name",
+          "value": "blah"
+        },
+        {
+          "name": "Path",
+          "value": "blah"
+        },
+        {
+          "name": "Icon",
+          "value": "blah"
+        },
+        {
+          "name": "Kind",
+          "value": "blah"
+        }
+      ],
+      "efields": [
+        {
+          "name": "Name",
+          "value": "blah"
+        }
+      ],
+      "expanded": false,
+      "checked": false
+    },
+    {
+      "name": "Footer...",
+      "id": "footer",
+      "type": "footer",
+      "configs": [],
+      "files": [],
+      "data": null,
+      "source": null,
+      "expanded": false,
+      "checked": false
+    },
+    {
+      "name": "List of All Devices.",
+      "id": "list1",
+      "type": "list",
+      "configs": [],
+      "files": [],
+      "data": [
+        {
+          "Name": "are you logged in?",
+          "Path": "do you have a token?"
+        }
+      ],
+      "source": "devices",
+      "mfields": [
+        "DeviceName",
+        "DeviceId"
+      ],
+      "dfields": [
+        {
+          "name": "DeviceName",
+          "value": "blah"
+        },
+        {
+          "name": "DeviceId",
+          "value": "blah"
+        },
+        {
+          "name": "BatteryStatus",
+          "value": "blah"
+        },
+        {
+          "name": "LastCheckInTime",
+          "value": "blah"
+        }
+      ],
+      "actions": [
+        {
+          "Action": "CheckIn"
+        },
+        {
+          "Action": "SendMessage",
+          "Message": "Hellow from Mc Genie!"
+        }
+      ],
+      "expanded": false,
+      "checked": false
+    }
+  ],
+  "files": [],
+  "data": null,
+  "source": null,
+  "expanded": false,
+  "checked": false
+};
 
 describe("Jassplan TO-DO REST API Version 16", function() {
 
@@ -120,7 +248,7 @@ describe("Jassplan TO-DO REST API Version 16", function() {
             $.ajax({
                 url: "/todo",
                 type:"POST",
-                data: "{\"name\":\"Mc Genie Sample 1\",\"id\":\"app\",\"type\":\"app\",\"configs\":[{\"name\":\"Header...\",\"id\":\"header\",\"type\":\"header\",\"configs\":[],\"files\":[],\"data\":null,\"source\":null,\"expanded\":false,\"checked\":false},{\"name\":\"List...\",\"id\":\"list1\",\"type\":\"list\",\"configs\":[],\"files\":[],\"data\":[{\"Name\":\"device1\",\"Path\":\"android\"},{\"Name\":\"device2\",\"Path\":\"iphone\"},{\"Name\":\"device3\",\"Path\":\"windows\"}],\"source\":\"devicegroups\",\"expanded\":false,\"checked\":false},{\"name\":\"Footer...\",\"id\":\"footer\",\"type\":\"footer\",\"configs\":[],\"files\":[],\"data\":null,\"source\":null,\"expanded\":false,\"checked\":false}],\"files\":[],\"data\":null,\"source\":null,\"expanded\":false,\"checked\":false}",
+                data: JSON.stringify(sampleconfig),
                 contentType:"application/json",
                 success: function(data, textStatus, jqXHR) {
                     var emptyArray = [];
